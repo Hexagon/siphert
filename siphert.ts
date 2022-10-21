@@ -1,4 +1,4 @@
-import { Registerer, RegistererState, UserAgent } from "./vendor/SIP.js/lib/api/index.js";
+import { Registerer, RegistererState, UserAgent } from "./lib/SIP.js/lib/api/index.js";
 import { settings } from "./settings.js";
 
 console.log("Startar siphert...");
