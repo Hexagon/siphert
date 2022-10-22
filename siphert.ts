@@ -1,14 +1,71 @@
-import { Registerer, RegistererState, UserAgent } from "./lib/SIP.js/lib/api/index.js";
+import { Registerer, RegistererState, UserAgent, SessionState } from "./lib/SIP.js/lib/api/index.js";
 import { settings } from "./settings.js";
+
+/*
+
+  Not possible to accept as there is no WebRTC implementation with MediaStream available in Deno yet 
+
+  ---
+
+import { MediaStream } from "???";
+
+const remoteStream = new MediaStream();
+function setupRemoteMedia(session: Session) {
+  session.sessionDescriptionHandler.peerConnection.getReceivers().forEach((receiver) => {
+    if (receiver.track) {
+      remoteStream.addTrack(receiver.track);
+    }
+  });
+}
+
+function cleanupMedia() {
+  //mediaElement.srcObject = null;
+  //mediaElement.pause();
+}
+
+*/
 
 console.log("Startar siphert...");
 
-function onInvite(invitation) {
-    console.log('Inkommande samtal från', invitation.incomingInviteRequest.message.headers.From[0].raw);
-    console.log('Siphert tycker det låter läskigt och trycker upptaget!');
-    invitation.reject();
-}
+
+  function onInvite(invitation) {
+      console.log('Inkommande samtal från', invitation.incomingInviteRequest.message.headers.From[0].raw);
+      console.log('Siphert tycker det låter läskigt och trycker upptaget!');
+      
+      /*
+      
+      Not possible to accept as there is no WebRTC implementation with MediaStream available in Deno yet 
+
+      ---
+
+      invitation.stateChange.addListener((state: SessionState) => {
+        console.log(`Session state changed to ${state}`);
+        switch (state) {
+          case SessionState.Initial:
+            break;
+          case SessionState.Establishing:
+            break;
+          case SessionState.Established:
+            //setupRemoteMedia(invitation);
+            break;
+          case SessionState.Terminating:
+            // fall through
+          case SessionState.Terminated:
+            //cleanupMedia();
+            break;
+          default:
+            throw new Error("Unknown session state.");
+        }
+      });
+      invitation.accept();
+      
+      */
+
+      invitation.reject();
+  }
+
 let lastLog;
+
 const uaOptions = {
   uri: UserAgent.makeURI(settings.uri),
   authorizationPassword: settings.password,
