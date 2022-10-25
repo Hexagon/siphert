@@ -1,4 +1,4 @@
-import { Registerer, RegistererState, UserAgent, SessionState } from "./lib/SIP.js/lib/api/index.js";
+import { Registerer, RegistererState, UserAgent/*, SessionState*/ } from "https://cdn.jsdelivr.net/npm/sip.js@0.21.0/lib/index.js";
 import { settings } from "./settings.js";
 
 /*
